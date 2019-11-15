@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	
+	<script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+	<script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+	<script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+	<script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+	<script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+	<script type="text/javascript" src="lib/url-template/url-template.js"></script>
+	<script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+	<script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+	<script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+	<script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+	<script type="text/javascript" src="apigClient.js"></script>
+</head>
+<body>
+
+<h2>Assignment 2</h2>
+
+
+
+<input type="text" name="message1" id="id1">
+<br>
+<input type="text" name="message2" id="id2">
+<button onclick="myFunction()">Click me</button>
+<script type="text/javascript">
+var apigClient = apigClientFactory.newClient();
+function myFunction() {
+	var params = {
+    //This is where any header, path, or querystring request params go. The key is the parameter named as defined in the API
+   
+	};
+	var input1 = document.getElementById("id1").value;
+	var input2 = document.getElementById("id2").value;
+	var body = {
+		"message" : {
+			"name" : input1,
+			"phone": input2
+		}
+    //This is where you define the body of the request
+  
+	};
+	var additionalParams = {
+    //If there are any unmodeled query parameters or headers that need to be sent with the request you can add them here
+    	headers: {
+       
+    		},
+    	queryParams: {
+       
+    		}
+	};
+	apigClient.addVisitorPost(params,body,additionalParams).then(function(result){
+  	//console.log(result);
+  	var tx=result.data.body;
+  	document.write(tx);
+  	});
+}
+
+</script>
+
+
+
+
+</body>
+</html>
